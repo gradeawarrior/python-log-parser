@@ -15,6 +15,11 @@ import getpass;
 import subprocess;
 import sys;
 
+
+###################
+# Argument Parser #
+###################
+
 parser = argparse.ArgumentParser(description='Remote Log parser')
 parser.add_argument('-s', '--servers', nargs='?',
                     type=argparse.FileType('r'),
@@ -29,11 +34,17 @@ parser.add_argument('-v', '--verbose', action='store_true',
 args = parser.parse_args()
 print args
 
+
+########
+# Main #
+########
+
 def main(argv):
     """
         main():
                 The main logic of the program. All logic goes through here
     """
+    
     while args.servers:
         line = args.servers.readline()
         line = line.rstrip("\n")
@@ -55,12 +66,18 @@ def main(argv):
         if args.verbose: print "%s" %(files)
     
     
+####################
+# Helper Functions #
+####################
+    
 def get_log_files(host, folder=".", user=getpass.getuser()):
     """Retrieves all log files from remote server"""
     
     cmd = "ssh %s@%s find %s | egrep \"\.log$\"" %(args.user, host, folder)
+    
     print "------ %s@%s ------" %(args.user, host)
     if args.verbose: print "$ %s" %(cmd)
+    
     p = subprocess.Popen(cmd,
                          shell=True,
                          stdin=subprocess.PIPE,
