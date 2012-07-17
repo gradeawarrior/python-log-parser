@@ -90,7 +90,6 @@ def main(argv):
         ## Split line
         host = line.split()[0]
         folder = "."
-        cmd = "ssh %s@%s find . | egrep \"\.log$\"" %(args.user, host)
     
         ## Find all log files on remote machine
         files = get_log_files(host, folder, args.user)
