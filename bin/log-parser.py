@@ -12,13 +12,15 @@
 
 import argparse;
 import getpass;
+import os;
+import paramiko;
 import subprocess;
 import sys;
 
 
-###################
-# Argument Parser #
-###################
+###################################
+# Argument Parser and Other Setup #
+###################################
 
 parser = argparse.ArgumentParser(description='Remote Log parser')
 parser.add_argument('-s', '--servers', nargs='?',
@@ -30,9 +32,16 @@ parser.add_argument('-u', '--user',
                     help='Optional user to authenticate as on remote system if different than local')
 parser.add_argument('-v', '--verbose', action='store_true',
                     help="Turns on verbose output")
+parser.add_argument('-x', '--execute', action='store_true',
+                    help="Only when this is specified will it actually perform search across list of hosts. Otherwise, this will only report on the files that it would search but not actually execute the search.")
 
 args = parser.parse_args()
 print args
+
+## Setup ssh client
+ssh = paramiko.SSHClient()
+ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+ssh.load_host_keys(os.path.expanduser(os.path.join("~", ".ssh", "known_hosts")))
 
 
 ########
@@ -64,6 +73,9 @@ def main(argv):
         
         print ">> There are %s files" %(len(files))
         if args.verbose: print "%s" %(files)
+        
+        ## Execute Search
+        if args.execute: read_files(host, files, args.user)
     
     
 ####################
@@ -92,6 +104,34 @@ def get_log_files(host, folder=".", user=getpass.getuser()):
     if len(files) == 1 and files[0] == "": files.pop()
     
     return files
+
+def read_files(host, files=[], user=getpass.getuser()):
+    """Reads remote files"""
+    
+    ssh.connect(host, username=user)
+    sftp = ssh.open_sftp()
+    
+    try:
+        for file in files:
+            remote_file = sftp.open(file)
+            linenum = 0
+            
+            print "\n\t####### Opening file:%s on %s@%s ######" %(file, user, host)
+            if args.verbose: print "\n----- begin cut -----";
+            
+            try:
+                for line in remote_file:
+                    line = line.rstrip("\n")
+                    linenum += 1
+                    if args.verbose: print "%s: %s" %(linenum, line)
+            finally:
+                remote_file.close()
+                
+            if args.verbose: print "----- end cut -----";
+    finally:
+        sftp.close()
+        ssh.close()
+        
 
 if __name__ == "__main__":
     main(sys.argv[1:])
