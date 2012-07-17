@@ -38,3 +38,19 @@ Remote File Research
                 
     See the directory-traverse.py script for a proof-of-concept file traversal
     on a local filesystem.
+    
+Regular Expressions
+===================
+    
+    Briefly looked over online regular expression documentation. Found that it's
+    very similar to Perl regular expression, which is fundamental to programming
+    in Perl to begin with!
+    
+        http://docs.python.org/howto/regex.html
+        
+    The program right now only does a very trivial regular expression check
+    within the file on the remote system. More work and detail could be performed
+    within the read_files() method to give us better results and thus a better
+    report. However, the program was designed to search over a generic set
+    of log files that may or may not have any correlation to other log files
+    found under a given directory path.
