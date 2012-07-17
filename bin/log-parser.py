@@ -22,6 +22,7 @@
 #          -u USER        Optional user to authenticate as on remote system if
 #                         different than local
 #          -v, --verbose  Turns on verbose output
+#          -i             Ignores case
 #          -x, --execute  Only when this is specified will it actually perform search
 #                         across list of hosts. Otherwise, this will only report on the
 #                         files that it would search but not actually execute the
