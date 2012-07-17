@@ -161,6 +161,7 @@ def read_files(host, files=[], user=getpass.getuser()):
                     ## A bit too verbose. This prints the line within the given file
                     #if args.verbose: print "%s: %s" %(linenum, line)
                     
+                    ## Search for term in the file
                     m = term.search(line)
                     if m:
                         count += 1
@@ -189,6 +190,8 @@ def add_to_report(type, host, file=None, linenum=None, line=None, linecount=None
     if linenum and line: report[type][host][file]['lines'].append([linenum, line])
     
 def report_file_line_count(type, host, file, linecount):
+    """Adds to the internal reporting structure. Specifically used for adding the total line count of a file"""
+    
     return add_to_report(type, host, file, None, None, linecount)
 
 def generate_report():
@@ -214,13 +217,12 @@ def generate_report():
                 line_count += len(report[mytype][host][file]['lines'])
                 total_line_count += report[mytype][host][file]['total-line-count']
             
+    ## Store high-level report counts
     report[type]['types'] = len(report.keys()) - 1
     report[type]['hosts'] = host_count
     report[type]['files'] = file_count
     report[type]['lines'] = line_count
     report[type]['total-lines'] = total_line_count
-    
-    ## Number of lines
         
 def print_report():
     """pretty print report to user"""
