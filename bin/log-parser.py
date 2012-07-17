@@ -42,9 +42,9 @@ import sys;
 ###################################
 
 parser = argparse.ArgumentParser(description='Remote Log parser')
-parser.add_argument('-s', metavar='SERVER', type=argparse.FileType('r'), default=sys.stdin,
+parser.add_argument('-s', metavar='SERVER', dest='server', type=argparse.FileType('r'), default=sys.stdin,
                     help='A file containing a list of servers to connect to')
-parser.add_argument('-u', metavar='USER', default=getpass.getuser(),
+parser.add_argument('-u', metavar='USER', dest='user', default=getpass.getuser(),
                     help='Optional user to authenticate as on remote system if different than local')
 parser.add_argument('-v', '--verbose', action='store_true',
                     help="Turns on verbose output")
@@ -78,8 +78,8 @@ def main(argv):
                 The main logic of the program. All logic goes through here
     """
     
-    while args.servers:
-        line = args.servers.readline()
+    while args.server:
+        line = args.server.readline()
         line = line.rstrip("\n")
         
         ## Exit if EOF
@@ -100,8 +100,9 @@ def main(argv):
         ## Execute Search
         if args.execute: read_files(host, files, args.user)
         
-        ## Pretty Print Report
-        print_report()
+        
+    ## Pretty Print Report
+    print_report()
     
     
 ####################
