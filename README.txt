@@ -81,7 +81,7 @@ Example Execution
 =================
 
     $ ./log-parser.py -s servers.txt -u psalas "\berror\b" -x
-    Namespace(execute=True, ignorecase=False, regular_expression='\\berror\\b', server=<open file 'servers.txt', mode 'r' at 0x103cce8a0>, user='psalas', verbose=False)
+    Namespace(execute=True, ignorecase=False, regular_expression='\\berror\\b', server=<open file 'servers.txt', mode 'r' at 0x10d50a9c0>, user='psalas', verbose=False)
     ------ psalas@10.21.41.183 ------
     >> There are 0 files
     ------ psalas@10.21.41.236 ------
@@ -91,95 +91,95 @@ Example Execution
     ------ psalas@m0010111.lab.ppops.net ------
     >> There are 45 files
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/curses/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/curses/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/psych/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/psych/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/gdbm/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/gdbm/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/tk/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/tk/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/pty/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/pty/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/fiddle/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/fiddle/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/ripper/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/ripper/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/racc/cparse/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/racc/cparse/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/socket/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/socket/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/readline/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/readline/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/io/wait/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/io/wait/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/io/nonblock/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/io/nonblock/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/io/console/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/io/console/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/dbm/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/dbm/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/win32ole/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/win32ole/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/syck/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/syck/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/digest/sha1/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/digest/sha1/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/digest/rmd160/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/digest/rmd160/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/digest/sha2/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/digest/sha2/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/digest/md5/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/digest/md5/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/iconv/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/iconv/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/json/parser/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/json/parser/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/json/generator/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/json/generator/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/dl/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/dl/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/syslog/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/syslog/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/openssl/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/openssl/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/bigdecimal/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/bigdecimal/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/-test-/add_suffix/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/-test-/add_suffix/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/etc/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/etc/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/ext/zlib/mkmf.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/ext/zlib/mkmf.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/ruby-1.9.3-p125/config.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/ruby-1.9.3-p125/config.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/src/yaml-0.1.4/config.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/src/yaml-0.1.4/config.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/log/ruby-1.9.3-p125/chmod.bin.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/log/ruby-1.9.3-p125/chmod.bin.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/log/ruby-1.9.3-p125/make.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/log/ruby-1.9.3-p125/make.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/log/ruby-1.9.3-p125/gemsets.initial.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/log/ruby-1.9.3-p125/gemsets.initial.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/log/ruby-1.9.3-p125/rubygems.extract.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/log/ruby-1.9.3-p125/rubygems.extract.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/log/ruby-1.9.3-p125/install.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/log/ruby-1.9.3-p125/install.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/log/ruby-1.9.3-p125/rubygems.install.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/log/ruby-1.9.3-p125/rubygems.install.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/log/ruby-1.9.3-p125/yaml/make.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/log/ruby-1.9.3-p125/yaml/make.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/log/ruby-1.9.3-p125/yaml/make.install.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/log/ruby-1.9.3-p125/yaml/make.install.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/log/ruby-1.9.3-p125/yaml/extract.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/log/ruby-1.9.3-p125/yaml/extract.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/log/ruby-1.9.3-p125/yaml/configure.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/log/ruby-1.9.3-p125/yaml/configure.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/log/ruby-1.9.3-p125/extract.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/log/ruby-1.9.3-p125/extract.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/log/ruby-1.9.3-p125/gem.install.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/log/ruby-1.9.3-p125/gem.install.log on psalas@m0010111.lab.ppops.net ######
     
-            ####### Opening file:./.rvm/log/ruby-1.9.3-p125/configure.log on psalas@m0010111.lab.ppops.net ######
+            ####### Scanning file:./.rvm/log/ruby-1.9.3-p125/configure.log on psalas@m0010111.lab.ppops.net ######
     
         ==================== Report ====================
         
@@ -187,4 +187,4 @@ Example Execution
         Number of Expressions: 1
         Number of Hosts Searched: 4
         Number of Log Files Searched: 45
-        Number of lines where above condition was met: 413
+        Number of lines where above condition was met: 413/26693

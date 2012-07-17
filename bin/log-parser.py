@@ -172,17 +172,24 @@ def read_files(host, files=[], user=getpass.getuser()):
                     add_to_report(args.regular_expression, host, file)
             finally:
                 remote_file.close()
+            
+            ## Report number of lines in file
+            report_file_line_count(args.regular_expression, host, file, linenum)
     finally:
         sftp.close()
         ssh.close()
         
-def add_to_report(type, host, file=None, linenum=None, line=None):
+def add_to_report(type, host, file=None, linenum=None, line=None, linecount=None):
     """Adds to the internal reporting structure"""
     
     if not report.has_key(type): report[type] = {}
     if not report[type].has_key(host): report[type][host] = {}
-    if file and not report[type][host].has_key(file): report[type][host][file] = []
-    if linenum and line: report[type][host][file].append([linenum, line])
+    if file and not report[type][host].has_key(file): report[type][host][file] = {'lines':[], 'total-line-count':0}
+    if file and linecount: report[type][host][file]['total-line-count'] = linecount
+    if linenum and line: report[type][host][file]['lines'].append([linenum, line])
+    
+def report_file_line_count(type, host, file, linecount):
+    return add_to_report(type, host, file, None, None, linecount)
 
 def generate_report():
     """Generates reporting metrics"""
@@ -191,8 +198,9 @@ def generate_report():
     host_count = 0
     file_count = 0
     line_count = 0
+    total_line_count = 0
     
-    if not report.has_key(type): report[type] = {'types' : 0, 'hosts' : 0, 'files' : 0, 'lines' : 0}
+    if not report.has_key(type): report[type] = {'types' : 0, 'hosts' : 0, 'files' : 0, 'lines' : 0, 'total-lines':0}
     
     for mytype in report.keys():
         ## Skip if the report key
@@ -203,12 +211,14 @@ def generate_report():
             file_count += len(report[mytype][host])
             
             for file in report[mytype][host].keys():
-                line_count += len(report[mytype][host][file])
+                line_count += len(report[mytype][host][file]['lines'])
+                total_line_count += report[mytype][host][file]['total-line-count']
             
     report[type]['types'] = len(report.keys()) - 1
     report[type]['hosts'] = host_count
     report[type]['files'] = file_count
     report[type]['lines'] = line_count
+    report[type]['total-lines'] = total_line_count
     
     ## Number of lines
         
@@ -223,13 +233,14 @@ def print_report():
     Number of Expressions: %s
     Number of Hosts Searched: %s
     Number of Log Files Searched: %s
-    Number of lines where above condition was met: %s
+    Number of lines where above condition was met: %s/%s
     
     """ %(args.regular_expression,
           reporter['types'],
           reporter['hosts'],
           reporter['files'],
-          reporter['lines'])
+          reporter['lines'],
+          reporter['total-lines'])
     
     pp = pprint.PrettyPrinter()
     if args.verbose: print pp.pprint(report)
