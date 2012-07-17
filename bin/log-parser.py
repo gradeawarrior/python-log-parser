@@ -9,26 +9,30 @@
 #       the script is to search on several remote machines for any and every
 #       file (given a remote directory) containing some search word.
 #
-#       usage: log-parser.py [-h] [-s [SERVERS]] [-u USER] [-v] [-x]
+#        usage: log-parser.py [-h] [-s SERVER] [-u USER] [-v] [-x] SEARCH_TERM
 #        
 #        Remote Log parser
 #        
+#        positional arguments:
+#          SEARCH_TERM    What to search for
+#        
 #        optional arguments:
-#          -h, --help            show this help message and exit
-#          -s [SERVERS], --servers [SERVERS]
-#                                A file containing a list of servers to connect to
-#          -u USER, --user USER  Optional user to authenticate as on remote system if
-#                                different than local
-#          -v, --verbose         Turns on verbose output
-#          -x, --execute         Only when this is specified will it actually perform
-#                                search across list of hosts. Otherwise, this will only
-#                                report on the files that it would search but not
-#                                actually execute the search.
+#          -h, --help     show this help message and exit
+#          -s SERVER      A file containing a list of servers to connect to
+#          -u USER        Optional user to authenticate as on remote system if
+#                         different than local
+#          -v, --verbose  Turns on verbose output
+#          -x, --execute  Only when this is specified will it actually perform search
+#                         across list of hosts. Otherwise, this will only report on the
+#                         files that it would search but not actually execute the
+#                         search.
+#
 
 import argparse;
 import getpass;
 import os;
 import paramiko;
+import re;
 import subprocess;
 import sys;
 
@@ -38,20 +42,25 @@ import sys;
 ###################################
 
 parser = argparse.ArgumentParser(description='Remote Log parser')
-parser.add_argument('-s', '--servers', nargs='?',
-                    type=argparse.FileType('r'),
-                    default=sys.stdin,
+parser.add_argument('-s', metavar='SERVER', type=argparse.FileType('r'), default=sys.stdin,
                     help='A file containing a list of servers to connect to')
-parser.add_argument('-u', '--user',
-                    default=getpass.getuser(),
+parser.add_argument('-u', metavar='USER', default=getpass.getuser(),
                     help='Optional user to authenticate as on remote system if different than local')
 parser.add_argument('-v', '--verbose', action='store_true',
                     help="Turns on verbose output")
 parser.add_argument('-x', '--execute', action='store_true',
                     help="Only when this is specified will it actually perform search across list of hosts. Otherwise, this will only report on the files that it would search but not actually execute the search.")
+parser.add_argument('regular_expression', metavar="SEARCH_TERM",
+                    help="What to search for")
 
 args = parser.parse_args()
 print args
+
+## Compile Regular Expression
+term = re.compile(args.regular_expression)
+
+## Setup Reporting Variables
+report = {}
 
 ## Setup ssh client
 ssh = paramiko.SSHClient()
@@ -91,6 +100,9 @@ def main(argv):
         
         ## Execute Search
         if args.execute: read_files(host, files, args.user)
+        
+        ## Pretty Print Report
+        print_report()
     
     
 ####################
@@ -139,6 +151,11 @@ def read_files(host, files=[], user=getpass.getuser()):
                     line = line.rstrip("\n")
                     linenum += 1
                     if args.verbose: print "%s: %s" %(linenum, line)
+                    
+                    m = term.search(line)
+                    if m:
+                        print "!! Found occurence on line %s: %s" % (linenum, line)
+                        add_report(args.regular_expression, host, file, linenum, line)
             finally:
                 remote_file.close()
                 
@@ -147,6 +164,24 @@ def read_files(host, files=[], user=getpass.getuser()):
         sftp.close()
         ssh.close()
         
+def add_report(type, host, file, linenum, line):
+    """Adds to the internal reporting structure"""
+    
+    if report.has_key(type):
+        if report[type].has_key(host):
+            if report[type][host].has_key(file):
+                report[type][host][file].append([linenum, line])
+            else:
+                report[type][host][file] = [linenum, line]
+        else:
+            report[type][host] = {}
+    else:
+        report[type] = {}
+        
+def print_report():
+    """pretty print report to user"""
+    
+    print report
 
 if __name__ == "__main__":
     main(sys.argv[1:])
