@@ -151,19 +151,20 @@ def read_files(host, files=[], user=getpass.getuser()):
             linenum = 0
             count = 0;
             
-            print "\n\t####### Opening file:%s on %s@%s ######" %(file, user, host)
-            if args.verbose: print "\n----- begin cut -----";
+            print "\n\t####### Scanning file:%s on %s@%s ######" %(file, user, host)
             
             try:
                 for line in remote_file:
                     line = line.rstrip("\n")
                     linenum += 1
-                    if args.verbose: print "%s: %s" %(linenum, line)
+                    
+                    ## A bit too verbose. This prints the line within the given file
+                    #if args.verbose: print "%s: %s" %(linenum, line)
                     
                     m = term.search(line)
                     if m:
                         count += 1
-                        print "\t!! Found occurence on line %s: %s" % (linenum, line)
+                        if args.verbose: print "\t!! Found occurence on line %s: %s" % (linenum, line)
                         add_to_report(args.regular_expression, host, file, linenum, line)
                         
                 ## Add the file to the report even though there were no lines found
@@ -171,8 +172,6 @@ def read_files(host, files=[], user=getpass.getuser()):
                     add_to_report(args.regular_expression, host, file)
             finally:
                 remote_file.close()
-                
-            if args.verbose: print "----- end cut -----";
     finally:
         sftp.close()
         ssh.close()
