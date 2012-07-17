@@ -5,10 +5,25 @@
 # Date: 07/16/2012
 # Description:
 #
-#	A self-learning python script to help familiarize myself with python.
-#       The goal of the script is to search on several remote machines for any
-#       and every file (given a remote directory) containing some search word.
+#	A python program to help familiarize myself with python. The goal of
+#       the script is to search on several remote machines for any and every
+#       file (given a remote directory) containing some search word.
 #
+#       usage: log-parser.py [-h] [-s [SERVERS]] [-u USER] [-v] [-x]
+#        
+#        Remote Log parser
+#        
+#        optional arguments:
+#          -h, --help            show this help message and exit
+#          -s [SERVERS], --servers [SERVERS]
+#                                A file containing a list of servers to connect to
+#          -u USER, --user USER  Optional user to authenticate as on remote system if
+#                                different than local
+#          -v, --verbose         Turns on verbose output
+#          -x, --execute         Only when this is specified will it actually perform
+#                                search across list of hosts. Otherwise, this will only
+#                                report on the files that it would search but not
+#                                actually execute the search.
 
 import argparse;
 import getpass;
